@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql语句，后续有重要作用 
+	#{}:点位符，相当于jdbc的？
+-->
+<mapper namespace="com.chuangli.study.dao.UserDao">
+<!-- id:sql id语句的唯一标识
+	 parameterType:入参的数据类型
+	 resultType:返回结果的类型
+ -->
+	<!-- 判断账号是否存在 -->
+	<select id="ifExist" parameterType="BigInteger" resultType="int">
+	    SELECT count(*)
+		FROM `user`
+		WHERE id = #{id}
+	</select>
+	<!-- 根据CatalogId查询相关信息，以Iptv对象形式保存 -->
+	<insert id="registe" parameterType="User">
+		INSERT INTO `user`
+	                (`id`,
+			         `password`)
+	   VALUES (#{id},
+	           #{password});
+	</insert>
+</mapper>
